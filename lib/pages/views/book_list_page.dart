@@ -1,6 +1,7 @@
 import 'package:assignment3/pages/bloc/book_app_event.dart';
 import 'package:assignment3/pages/bloc/book_app_state.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:assignment3/pages/bloc/book_app_bloc.dart';
 import 'package:assignment3/widgets/book_card.dart';
 import '../../widgets/custom_app_bar.dart';
@@ -12,6 +13,10 @@ class BookListPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(text: "Book Club Home", screen: "Book List"),
@@ -46,7 +51,7 @@ class BookListPage extends StatelessWidget{
                         SizedBox(width: 10),
                         FilterChip(
                           showCheckmark: false,
-                          label: Text("Author"), 
+                          label: Text("Author", style: Theme.of(context).textTheme.labelLarge,), 
                           selected: state.pickedFilter==Filter.author,
                           onSelected: (selected) {
                             context.read<BookAppBloc>().add(SortAuthorEvent());
@@ -55,7 +60,7 @@ class BookListPage extends StatelessWidget{
                         SizedBox(width: 10),
                         FilterChip(
                           showCheckmark: false,
-                          label: Text("Title"), 
+                          label: Text("Title",style: Theme.of(context).textTheme.labelLarge,), 
                           selected: state.pickedFilter==Filter.title,
                           onSelected: (selected) {
                             context.read<BookAppBloc>().add(SortTitleEvent());

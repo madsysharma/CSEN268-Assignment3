@@ -2,6 +2,7 @@ import 'package:assignment3/pages/bloc/book_app_bloc.dart';
 import 'package:assignment3/widgets/book_card.dart';
 import 'package:assignment3/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../models/book.dart';
 import 'package:assignment3/pages/bloc/book_app_state.dart';
@@ -14,6 +15,10 @@ class DetailsPage extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
+    ));
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(text: "Book Detail", screen: "Details Page"),

@@ -47,7 +47,10 @@ class BookAppBloc extends Bloc<BookAppEvent, BookAppState> {
   void init() async{
     //Called when the app is initialized
     await _loading();
-    final booksInitial=_initial()..sort((a,b)=>a.bookAuthor.compareTo(b.bookAuthor));
-    emit(BookAppAuthor(books: booksInitial, pickedFilter: Filter.author));
+    emit(BookAppAuthor(books: _initial()..sort((a,b)=>a.bookAuthor.compareTo(b.bookAuthor)), pickedFilter: Filter.author));
+  }
+
+  void reset(){
+    emit(BookAppAuthor(books: _initial()..sort((a,b)=>a.bookAuthor.compareTo(b.bookAuthor)), pickedFilter: Filter.author));
   }
 }
